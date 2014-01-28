@@ -9,18 +9,19 @@
     $('#getImg').click(getImages);
     $('#clearImg').click(clearImage);
   }
-
+//...this function will clear all the generated images from the '#container' div ... and refocus the cursor on the '#zipcode' text field.//
   function clearImage(){
     $('#container > div').remove();
     $('#zipcode').focus();
   }
-
+//... this function defines the url and concatinate the zip code to it...//
   function getImages(){
     var zipcode = $('#zip').val();
     var url = 'http://api.wunderground.com/api/dd0113b11366fc5b/webcams/q/'+zipcode+'.json?callback=?';
     $.getJSON(url, receive);
   }
 
+//...this function generated empty div and appends the neighbourhood name in a div and and the img from the webcam in the div// 
   function receive(data){
     console.log(data);
     var count = data.webcams;
@@ -35,10 +36,10 @@
       $parDiv.addClass('style');
       $parDiv.append($div, $img);
       $('#container').prepend($parDiv);
-     // $('#container').prepend($img);
     }
   }
 
+//... this function pushes the zipcodes to the dropdown select.//
   function pushToSelect(){
     var zipcode = $('#zipcode').val();
     var $option = $('<option>'+zipcode+'</option>');
